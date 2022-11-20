@@ -1,0 +1,22 @@
+.card {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: center; */
+	/* align-items: center; */
+	max-width: 300px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	margin: 10px;
+	background-color: var(--card--bg);
+}
+.card:hover {
+	box-shadow: var(--box-shadow);
+	transform: scale(1.01);
+	transition: all 0.2s;
+}
+.price {
+	color: var(--price-color);
+	align-self: center;
+	font-weight: 700;
+}

@@ -1,0 +1,28 @@
+.inputs {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.label {
+	font-size: 14px;
+	color: var(--text-color);
+	/* margin-bottom: 10px; */
+	padding-right: 20px;
+}
+.submit {
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	width: 330px;
+	background-color: #e22319;
+	text-align: center;
+	color: #fff;
+	font-size: 14px;
+	margin: 20px 0 0 80px;
+	outline: none;
+	cursor: pointer;
+	border: none;
+}
+.action {
+	width: 80px;
+}

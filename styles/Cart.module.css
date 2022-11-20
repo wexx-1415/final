@@ -1,0 +1,65 @@
+.cart {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	justify-items: center;
+	align-items: center;
+	width: var(--content-width);
+}
+.main {
+	display: flex;
+	flex-direction: row;
+	/* width: var(--content-width); */
+	margin: 0 auto;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+.delete {
+	height: 40px;
+	border: 0;
+	width: 132px;
+	border-radius: 0px;
+	outline: 0;
+}
+.check {
+	border: 2px solid white;
+	border-radius: 50%;
+	position: relative;
+}
+.check input {
+	visibility: hidden;
+}
+.check input::before {
+	content: '';
+	opacity: 0;
+	visibility: visible;
+	display: block;
+	width: 10px;
+	top: -1px;
+	left: -1px;
+	background-color: aliceblue;
+	height: 10px;
+	border: 2px solid white;
+	border-radius: 50%;
+	transition: all 0.3s ease;
+	position: relative;
+}
+.check input:checked::before {
+	opacity: 1;
+}
+.bar {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+	padding-top: 30px;
+	width: var(--content-width);
+}
+.buy {
+	background-color: var(--lenovo-color);
+	border: 0;
+	border-radius: 0%;
+	width: 132px;
+	height: 40px;
+	/* margin-left: 125px; */
+	cursor: pointer;
+}

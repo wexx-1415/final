@@ -1,7 +1,17 @@
-import '../styles/globals.css'
-
+import { AuthProvider } from '../lib/AuthorContext';
+import { CartProvider } from '../lib/CartContext';
+import { UserProvider } from '../lib/UserContext';
+import '../styles/globals.css';
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+	return (
+		<UserProvider>
+			<CartProvider>
+				<AuthProvider>
+					<Component {...pageProps} />
+				</AuthProvider>
+			</CartProvider>
+		</UserProvider>
+	);
 }
 
-export default MyApp
+export default MyApp;

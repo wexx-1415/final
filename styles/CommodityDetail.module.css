@@ -1,0 +1,57 @@
+.main {
+	display: flex;
+	flex-direction: row;
+	width: var(--content-width);
+	margin: 0 auto;
+	/* justify-content: center; */
+}
+.detail {
+	padding-left: 20px;
+}
+.detail > span {
+	font-weight: bold;
+	font-size: 28px;
+	color: var(--lenovo-color);
+}
+.guideItems {
+	margin-left: auto;
+}
+.guideItem {
+	width: 258px;
+	height: 25px;
+	margin-left: auto;
+	border: 1px solid #dadada;
+	background-color: transparent;
+	/* padding: 20px; */
+	margin: 5px 10px 5px 0;
+}
+.guide {
+	display: flex;
+	align-items: center;
+}
+.guide span {
+	padding-left: 20px;
+}
+.buy {
+	background-color: var(--lenovo-color);
+	border: 0;
+	border-radius: 0%;
+	width: 132px;
+	height: 40px;
+	color: #f5f5f5;
+	/* margin-left: 125px; */
+	margin-top: 20px;
+	cursor: pointer;
+}
+.add {
+	background-color: var(--add-bg);
+	border: 1px solid var(--lenovo-color);
+	border-radius: 0%;
+	color: var(--lenovo-color);
+	margin-top: 20px;
+
+	width: 132px;
+	height: 40px;
+	margin-left: 20px;
+	cursor: pointer;
+}

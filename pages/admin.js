@@ -20,10 +20,14 @@ const Admin = () => {
 			},
 			body: `name=${userName}&pass=${password}`,
 		}).then((res) => {
-			console.log(res.headers.get('Authorization'));
-			const token = res.headers.get('Authorization');
-			setAuth(token);
-			Router.push('/admin/add');
+			if (res.ok) {
+				console.log(res.headers.get('Authorization'));
+				const token = res.headers.get('Authorization');
+				setAuth(token);
+				Router.push('/admin/add');
+			} else {
+				alert('用户名或密码错误');
+			}
 		});
 	};
 	return (

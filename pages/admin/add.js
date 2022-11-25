@@ -1,5 +1,6 @@
 import Router from 'next/router';
 import { useEffect, useRef, useState } from 'react';
+import { Message } from '../../components/Message';
 import Side from '../../components/Side';
 import { useAuth } from '../../lib/AuthorContext';
 import style from '../../styles/Admin.module.css';
@@ -76,6 +77,7 @@ const Admin = ({ commodity, setClose }) => {
 				Router.push('/admin');
 			}
 		});
+		Message.success('操作成功');
 		if (setClose) setClose(false);
 	};
 	const handleDelete = () => {
@@ -93,6 +95,7 @@ const Admin = ({ commodity, setClose }) => {
 				Router.push('/admin');
 			}
 		});
+		Message.success('删除成功');
 		if (setClose) setClose(false);
 	};
 	return (
@@ -101,78 +104,78 @@ const Admin = ({ commodity, setClose }) => {
 			{!commodity ? <Side /> : null}
 			<div className={style.inputs}>
 				<div>
-					<label className={style.label} htmlFor="name">
+					<label className={style.label} htmlFor='name'>
 						商品名称:
 					</label>
 					<input
 						className={LoginSty.input}
-						type="text"
-						id="name"
+						type='text'
+						id='name'
 						value={name}
 						required
 						onChange={OnNameChange}
 					></input>
 				</div>
 				<div>
-					<label className={style.label} htmlFor="price">
+					<label className={style.label} htmlFor='price'>
 						商品价格:
 					</label>
 					<input
-						id="price"
+						id='price'
 						className={LoginSty.input}
-						type="text"
+						type='text'
 						required
 						value={price}
 						onChange={OnPriceChange}
 					></input>
 				</div>
 				<div>
-					<label className={style.label} htmlFor="num">
+					<label className={style.label} htmlFor='num'>
 						商品数量:
 					</label>
 					<input
-						id="num"
+						id='num'
 						className={LoginSty.input}
-						type="number"
+						type='number'
 						required
 						value={num}
 						onChange={OnNumChange}
 					></input>
 				</div>
 				<div>
-					<label className={style.label} htmlFor="category">
+					<label className={style.label} htmlFor='category'>
 						商品类别:
 					</label>
 					<input
-						id="category"
+						id='category'
 						className={LoginSty.input}
 						required
-						type="text"
+						type='text'
 						value={category}
 						onChange={OnCategoryChange}
 					></input>
 				</div>
 				<div>
-					<label className={style.label} htmlFor="description">
+					<label className={style.label} htmlFor='description'>
 						商品描述:
 					</label>
 					<input
-						id="description"
+						id='description'
 						className={LoginSty.input}
-						type="text"
+						type='text'
 						required
 						value={description}
 						onChange={OnDescriptionChange}
 					></input>
 				</div>
 				<div>
-					<label className={style.label} htmlFor="file">
+					<label className={style.label} htmlFor='file'>
 						商品图片:
 					</label>
 					<input
-						id="file"
+						id='file'
 						className={LoginSty.input}
-						type="file"
+						type='file'
 						required
 						ref={inputRef}
 					/>

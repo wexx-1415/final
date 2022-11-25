@@ -1,5 +1,6 @@
 import Router from 'next/router';
 import { useState } from 'react';
+import { Message } from '../components/Message';
 import { useAuth } from '../lib/AuthorContext';
 import style from '../styles/Login.module.css';
 const Admin = () => {
@@ -26,7 +27,7 @@ const Admin = () => {
 				setAuth(token);
 				Router.push('/admin/add');
 			} else {
-				alert('用户名或密码错误');
+				Message.error('用户名或密码错误');
 			}
 		});
 	};
@@ -38,8 +39,8 @@ const Admin = () => {
 				onChange={(e) => {
 					setUserName(e.target.value);
 				}}
-				type="text"
-				placeholder="用户名"
+				type='text'
+				placeholder='用户名'
 			/>
 			<input
 				className={style.input}
@@ -47,8 +48,8 @@ const Admin = () => {
 				onChange={(e) => {
 					setPassword(e.target.value);
 				}}
-				type="password"
-				placeholder="密码"
+				type='password'
+				placeholder='密码'
 			/>
 			<button onClick={handleSubmit} className={style.submit}>
 				Login

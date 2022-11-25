@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Header from '../components/Header';
+import { Message } from '../components/Message';
 import NumButton from '../components/NumButton';
 import { useCart } from '../lib/CartContext';
 import { useUser } from '../lib/UserContext';
@@ -30,6 +31,7 @@ const Cart = () => {
 			}).then((res) => {
 				if (res.status === 200) {
 					console.log(cart, commodityIds);
+					Message.success('购买成功');
 					setCart(
 						cart.filter(
 							(item) => commodityIds.indexOf(item.commodityId.toString()) === -1
@@ -45,6 +47,7 @@ const Cart = () => {
 					(item) => commodityIds.indexOf(item.commodityId.toString()) === -1
 				)
 			);
+			Message.success('删除成功');
 			commodityIds = [];
 		};
 		return (
@@ -80,7 +83,7 @@ const Cart = () => {
 		return (
 			<label className={style.check} htmlFor={commodity.commodityName}>
 				<input
-					type="checkbox"
+					type='checkbox'
 					id={commodity.commodityId}
 					name={commodity.commodityName}
 					onChange={onChange}

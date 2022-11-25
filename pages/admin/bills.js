@@ -3,6 +3,7 @@ import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Display from '../../components/Display';
+import { Message } from '../../components/Message';
 import Modal from '../../components/modal';
 import PageControl from '../../components/PageControl';
 import Side from '../../components/Side';
@@ -60,7 +61,7 @@ const Commodities = () => {
 					) >
 				1000 * 60 * 60 * 24
 			) {
-				alert('订单已超过一天，无法取消');
+				Message.error('订单已超过一天，无法取消');
 				return;
 			} else {
 				fetch('/api/bill/delete', {
@@ -72,6 +73,7 @@ const Commodities = () => {
 					body: `billId=${bill.billId}`,
 				}).then((res) => {
 					if (res.status === 200) {
+						Message.success('取消成功');
 						setClose(false);
 					} else if (res.status === 401) {
 						setAuth('');
@@ -90,6 +92,7 @@ const Commodities = () => {
 				body: `billId=${bill.billId}&address=${address}`,
 			}).then((res) => {
 				if (res.status === 200) {
+					Message.success('修改成功');
 					setClose(false);
 				} else if (res.status === 401) {
 					setAuth('');
@@ -123,7 +126,7 @@ const Commodities = () => {
 			<Display
 				data={data.data}
 				headers={headers}
-				actionName="修改"
+				actionName='修改'
 				action={(e) => {
 					setBill(e);
 

@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useUser } from '../lib/UserContext';
 import style from '../styles/Login.module.css';
+import { Message } from './Message';
 const Login = ({ setClose }) => {
 	const [userName, setUserName] = useState('');
 	const [password, setPassword] = useState('');
 	const [address, setAddress] = useState('');
-	const {  setUser } = useUser();
+	const { setUser } = useUser();
 	const handleRegister = (e) => {
 		e.preventDefault();
 		fetch('/api/register', {
@@ -18,6 +19,7 @@ const Login = ({ setClose }) => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.code === '0') {
+					Message.success('注册成功');
 					setUser(data.data);
 					setClose(false);
 					localStorage.setItem('user', JSON.stringify(data.data));
@@ -38,12 +40,14 @@ const Login = ({ setClose }) => {
 			.then((res) => {
 				if (res.ok) {
 					console.log('Login successful');
+					Message.success('登录成功');
 					console.log(res.headers.get('Authorization'));
 					localStorage.setItem('token', res.headers.get('Authorization'));
 					setClose(false);
 					return res.json();
 				} else {
 					console.log('Login failed');
+					// Message.error('用户名或密码错误');
 					return res.json();
 				}
 			})
@@ -52,7 +56,7 @@ const Login = ({ setClose }) => {
 					setUser(data.data);
 					localStorage.setItem('user', JSON.stringify(data.data));
 				} else {
-					alert(data.msg);
+					Message.error(data.msg);
 				}
 			});
 	};
@@ -62,22 +66,22 @@ const Login = ({ setClose }) => {
 			<h2>联想会员登录</h2>
 			<input
 				className={style.input}
-				type="text"
-				placeholder="用户名"
+				type='text'
+				placeholder='用户名'
 				value={userName}
 				onChange={(e) => setUserName(e.target.value)}
 			/>
 			<input
-				placeholder="密码"
+				placeholder='密码'
 				className={style.input}
-				type="password"
+				type='password'
 				value={password}
 				onChange={(e) => setPassword(e.target.value)}
 			/>
 			<input
-				placeholder="地址,注册时输入"
+				placeholder='地址,注册时输入'
 				className={style.input}
-				type="text"
+				type='text'
 				value={address}
 				onChange={(e) => setAddress(e.target.value)}
 			/>

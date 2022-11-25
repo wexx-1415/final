@@ -4,6 +4,7 @@ import GradText from '../components/GradText';
 import { useCart } from '../lib/CartContext';
 import { useUser } from '../lib/UserContext';
 import style from '../styles/CommodityDetail.module.css';
+import { Message } from './Message';
 /**
  * @param {Object} props
  * @param {Object} props.commodity
@@ -31,18 +32,19 @@ const CommodityDetail = ({ commodity }) => {
 		e.preventDefault();
 		console.log('add to cart');
 		if (!user) {
-			alert('请先登录');
+			Message.error('请先登录');
 			// ref.current.show();
 			return;
 		}
 		setCart([...cart, commodity]);
+		Message.success('添加成功');
 		console.log(cart);
 	};
 	const OnBuy = (e) => {
 		e.preventDefault();
 		console.log('buy');
 		if (!user) {
-			alert('请先登录');
+			Message.error('请先登录');
 			return;
 		}
 		fetch('/api/buy', {
@@ -51,6 +53,10 @@ const CommodityDetail = ({ commodity }) => {
 				'Content-Type': 'application/x-www-form-urlencoded',
 			},
 			body: `CommodityIds={"Ids":[${commodity.commodityId}]}&UserId=${user.userId}&Address=${user.address}&Nums={"Nums":[1]}`,
+		}).then((res) => {
+			if (res.ok) {
+				Message.success('购买成功');
+			}
 		});
 	};
 	return (
@@ -58,7 +64,7 @@ const CommodityDetail = ({ commodity }) => {
 			<main className={style.main}>
 				<Image
 					src={`/pic/${commodity.commodityPicPath}`}
-					alt="search"
+					alt='search'
 					width={520}
 					height={520}
 				/>

@@ -7,6 +7,7 @@ import Modal from '../components/modal';
 import { useUser } from '../lib/UserContext';
 import style from '../styles/Header.module.css';
 import fetcher from '../utils/fetcher';
+import { Message } from './Message';
 const SearchResult = (search) => {
 	search = search.data;
 	const { data, error } = useSWR(`/api/search?name=${search}`, fetcher);
@@ -49,6 +50,7 @@ const Header = () => {
 					style={{ cursor: 'pointer', paddingLeft: '10px' }}
 					onClick={() => {
 						localStorage.removeItem('user');
+						Message.success('退出成功');
 						setUser(null);
 					}}
 				>
@@ -67,10 +69,10 @@ const Header = () => {
 			<header className={style.header}>
 				<ul className={style.headerUl}>
 					<li>
-						<Link href="/">
+						<Link href='/'>
 							<Image
-								src="/img/logo.png"
-								alt="logo"
+								src='/img/logo.png'
+								alt='logo'
 								width={190}
 								priority
 								height={36}
@@ -78,16 +80,16 @@ const Header = () => {
 						</Link>
 					</li>
 					<li>
-						<Link href="/category/轻薄本">轻薄本</Link>
+						<Link href='/category/轻薄本'>轻薄本</Link>
 					</li>
 					<li>
-						<Link href="/category/拯救者">拯救者</Link>
+						<Link href='/category/拯救者'>拯救者</Link>
 					</li>
 					<li>
-						<Link href="/category/周边">周边</Link>
+						<Link href='/category/周边'>周边</Link>
 					</li>
 					<li>
-						<Link href="/category/台式机">台式机</Link>
+						<Link href='/category/台式机'>台式机</Link>
 					</li>
 					<li>
 						<Link href={'/cart'}>购物车</Link>
@@ -96,9 +98,9 @@ const Header = () => {
 				<UserBar />
 				<div className={style.search}>
 					<span>
-						<Image src="/pic/查找.png" alt="search" width={30} height={30} />
+						<Image src='/pic/查找.png' alt='search' width={30} height={30} />
 					</span>
-					<input type="text" value={search} onChange={OnSearch}></input>
+					<input type='text' value={search} onChange={OnSearch}></input>
 					{search == '' ? null : <SearchResult data={search} />}
 				</div>
 			</header>

@@ -2,6 +2,7 @@ import Router from 'next/router';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Display from '../../components/Display';
+import { Message } from '../../components/Message';
 import Modal from '../../components/modal';
 import PageControl from '../../components/PageControl';
 import Side from '../../components/Side';
@@ -41,6 +42,7 @@ const Commodities = () => {
 				body: `userId=${user.userId}`,
 			}).then((res) => {
 				if (res.status === 200) {
+					Message.success('删除成功');
 					setClose(false);
 				} else if (res.status === 401) {
 					setAuth('');
@@ -58,6 +60,7 @@ const Commodities = () => {
 				body: `userName=${name}&userPwd=${pwd}&userId=${user.userId}&address=${address}`,
 			}).then((res) => {
 				if (res.status === 200) {
+					Message.success('修改成功');
 					setClose(false);
 				} else if (res.status === 401) {
 					setAuth('');
@@ -111,7 +114,7 @@ const Commodities = () => {
 				data={data.data}
 				headers={headers}
 				headerName={headerName}
-				actionName="修改"
+				actionName='修改'
 				action={(e) => {
 					setUser({ ...user, ...e });
 					setClose(true);

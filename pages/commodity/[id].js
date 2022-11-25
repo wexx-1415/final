@@ -7,7 +7,7 @@ import Header from '../../components/Header';
 import { useUser } from '../../lib/UserContext';
 import fetcher from '../../utils/fetcher';
 const Commodity = () => {
-	const { user, setUser } = useUser();
+	const { setUser } = useUser();
 	useEffect(() => {
 		if (localStorage.getItem('user')) {
 			setUser(JSON.parse(localStorage.getItem('user')));

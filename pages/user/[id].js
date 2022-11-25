@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import useSWR from 'swr';
 import Display from '../../components/Display';
 import Header from '../../components/Header';
+import { Message } from '../../components/Message';
 import { useUser } from '../../lib/UserContext';
 import style from '../../styles/Cart.module.css';
 import fetcher from '../../utils/fetcher';
@@ -61,8 +62,7 @@ const Cart = () => {
 				) >
 			1000 * 60 * 60 * 24
 		) {
-			alert('订单已超过一天，无法取消');
-			return;
+			Message.error('订单已超过一天，无法取消');
 		} else {
 			fetch('/api/bill/cancel', {
 				method: 'POST',
@@ -70,6 +70,10 @@ const Cart = () => {
 					'Content-Type': 'application/x-www-form-urlencoded',
 				},
 				body: `billId=${bill.billId}`,
+			}).then((res) => {
+				if (res.status === 200) {
+					Message.success('取消成功');
+				}
 			});
 		}
 	};
